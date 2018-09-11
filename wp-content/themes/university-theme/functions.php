@@ -11,9 +11,9 @@
 	}
 
 	function uni_features(){
-		register_nav_menu('headerMenuLocation', 'Header Menu Location');
-		register_nav_menu('exploreMenuLocation', 'Explore Menu Location');
-		register_nav_menu('learnMenuLocation', 'Learn Menu Location');
+	//	register_nav_menu('headerMenuLocation', 'Header Menu Location');
+	//	register_nav_menu('exploreMenuLocation', 'Explore Menu Location');
+	//	register_nav_menu('learnMenuLocation', 'Learn Menu Location');
 		add_theme_support('title-tag');
 	}
 
