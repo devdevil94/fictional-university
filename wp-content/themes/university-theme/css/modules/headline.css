@@ -4,6 +4,7 @@
   font-weight: 300;
 
   &--large {
+    color: #56e8;
     font-size: 3.6rem;
     @mixin atSmall {
       font-size: 6.25rem;
