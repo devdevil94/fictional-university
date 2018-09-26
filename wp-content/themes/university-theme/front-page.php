@@ -32,7 +32,7 @@
             <p><?php echo wp_trim_words( get_the_content(),10 ); ?> <a href="#" class="nu gray">Learn more</a></p>
           </div>
         </div>
-          <?php}
+          <?php }
         ?>
       
         
