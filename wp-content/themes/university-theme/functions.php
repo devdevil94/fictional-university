@@ -16,7 +16,27 @@
 		add_theme_support('title-tag');
 	}
 
+	function uni_adjust_queries($query){
+		if(!is_admin() AND is_post_type_archive('event') AND $query->is_main_query()){
+			$today = date('Ymd');
+			$query->set('meta_key', 'event_date');
+			$query->set('orderby', 'meta_value_num');
+			$query->set('order', 'ASC');
+			$query->set('meta_query', array(
+                            array(
+                              'key' => 'event_date',
+                              'compare' => '>=',
+                              'value' => $today,
+                              'type' => 'numeric'
+                          	)
+                          )
+						);
+		}
+		
+	}
+
 	add_action('wp_enqueue_scripts', 'uni_files'); //run js and css function(s) above
 	add_action('after_setup_theme', 'uni_features');
+	add_action( 'pre_get_posts', 'uni_adjust_queries');
 	
 ?>
