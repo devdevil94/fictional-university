@@ -38,7 +38,9 @@
   		<?php 
     }
   			echo paginate_links();
-  		?>
+		?>
+    <hr class="section-break">
+    <p><a href="<?php echo site_url('/past-events'); ?>">Past Events</a></p>
   </div>
 
 <?php get_footer(); ?>
