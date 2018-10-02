@@ -3,7 +3,7 @@
 	function uni_post_types(){
 		register_post_type('event', array( 
 			'has_archive' => true,
-			'supports' => array('title', 'editor', 'excerpt'),
+			'supports' => array('title', 'editor', 'excerpt', 'custom-fields'),
 			'rewrite' => array('slug' => 'events'),
 			'public' => true,
 			'labels' => array(
