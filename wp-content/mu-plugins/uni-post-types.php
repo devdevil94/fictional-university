@@ -1,6 +1,7 @@
 <?php 
 
 	function uni_post_types(){
+		//Event Post Type
 		register_post_type('event', array( 
 			'has_archive' => true,
 			'supports' => array('title', 'editor', 'excerpt', 'custom-fields'),
@@ -13,6 +14,21 @@
 						'all_items' => 'All Events',
 						'singular_name' => 'Event'),
 			'menu_icon' => 'dashicons-calendar'
+		));
+
+		//Program Post Type
+		register_post_type('program', array( 
+			'has_archive' => true,
+			'supports' => array('title', 'editor'),
+			'rewrite' => array('slug' => 'programs'),
+			'public' => true,
+			'labels' => array(
+						'name' => 'Programs',
+						'add_new_item' => 'Add New Program',
+						'edit_item' => 'Edit Program',
+						'all_items' => 'All Programs',
+						'singular_name' => 'Program'),
+			'menu_icon' => 'dashicons-awards'
 		));
 	}
 
