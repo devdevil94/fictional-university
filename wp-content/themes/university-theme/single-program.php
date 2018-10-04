@@ -20,24 +20,29 @@
 			<div class="generic-content"><?php the_content(); ?></div>
 
       <?php 
-                  $homepageEvents = new WP_Query(array(
-                          'posts_per_page' => 2,
-                          'post_type' => 'event',
-                          'meta_key' => 'event_date',
-                          'orderby' => 'meta_value_num',
-                          'order' => 'ASC',
-                          'meta_query' => array(
-                            array(
-                              'key' => 'event_date',
-                              'compare' => '>=',
-                              'value' => $today,
-                              'type' => 'numeric'),
-                            array(
-                              'key' => 'related_programs',
-                              'compare' => 'LIKE', //Contains
-                              'value' => '"'.get_the_ID().'"')
-                          ))
-          );
+        $homepageEvents = new WP_Query(array(
+          'posts_per_page' => 2,
+          'post_type' => 'event',
+          'meta_key' => 'event_date',
+          'orderby' => 'meta_value_num',
+          'order' => 'ASC',
+          'meta_query' => array(
+            array(
+              'key' => 'event_date',
+              'compare' => '>=',
+              'value' => $today,
+              'type' => 'numeric'),
+            array(
+              'key' => 'related_programs',
+              'compare' => 'LIKE', //Contains
+              'value' => '"'.get_the_ID().'"')
+          )
+        ));
+
+        if($homepageEvents->have_posts()){
+          echo '<hr class="section-break">';
+          echo '<h2 class="headline headline--medium">Upcoming '.get_the_title().' Events</h2>';
+
           while ($homepageEvents->have_posts()) {
             $homepageEvents->the_post(); ?>
             <div class="event-summary">
@@ -70,6 +75,7 @@
                 </div>
             </div>
             <?php 
+        }
         }
       ?>
   		</div>
