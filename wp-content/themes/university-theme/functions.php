@@ -14,6 +14,9 @@
 	//	register_nav_menu('exploreMenuLocation', 'Explore Menu Location');
 	//	register_nav_menu('learnMenuLocation', 'Learn Menu Location');
 		add_theme_support('title-tag');
+		add_theme_support( 'post-thumbnails' );
+		add_image_size( 'profLandscape', 400, 260, true );
+		add_image_size( 'profPortrait', 480, 650, true );
 	}
 
 	function uni_adjust_queries($query){
