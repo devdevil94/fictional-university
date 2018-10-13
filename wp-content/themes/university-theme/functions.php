@@ -18,7 +18,9 @@
 
 		add_image_size( 'profLandscape', 400, 260, true);
 		add_image_size( 'profPortrait', 480, 650, true );
+		add_image_size( 'pageBanner', 1500, 350, true );
 	}
+
 
 	function uni_adjust_queries($query){
 		if (!is_admin() AND is_post_type_archive('program') AND $query->is_main_query()) {
