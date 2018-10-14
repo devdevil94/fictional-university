@@ -16,6 +16,21 @@
 			'menu_icon' => 'dashicons-calendar'
 		));
 
+		//Campus Post Type
+		register_post_type('campus', array( 
+			'has_archive' => true,
+			'supports' => array('title', 'editor', 'excerpt'),
+			'rewrite' => array('slug' => 'campuses'),
+			'public' => true,
+			'labels' => array(
+						'name' => 'Campuss',
+						'add_new_item' => 'Add New Campus',
+						'edit_item' => 'Edit Campus',
+						'all_items' => 'All Campuses',
+						'singular_name' => 'Campus'),
+			'menu_icon' => 'dashicons-location-alt'
+		));
+
 		//Program Post Type
 		register_post_type('program', array( 
 			'has_archive' => true,
