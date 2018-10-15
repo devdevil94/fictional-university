@@ -77,8 +77,14 @@
 		
 	}
 
+	function uniMapKey($api){
+		$api['key'] = 'AIzaSyAXksGHC3gSKtwD8qWjNEWuXctJzliDITw';
+		return $api;
+	}
+
 	add_action('wp_enqueue_scripts', 'uni_files'); //run js and css function(s) above
 	add_action('after_setup_theme', 'uni_features');
 	add_action( 'pre_get_posts', 'uni_adjust_queries');
+	add_filter( 'acf/fields/google_map/api', 'uniMapKey' );
 	
 ?>
