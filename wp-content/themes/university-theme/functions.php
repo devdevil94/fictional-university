@@ -35,8 +35,7 @@
 		wp_enqueue_style('font_awsome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 		wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
 		wp_enqueue_style('uni_main_styles', get_stylesheet_uri(), NULL, microtime());
-
-
+		wp_enqueue_script('google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyAXksGHC3gSKtwD8qWjNEWuXctJzliDITw', NULL, '1.0', true);
 	}
 
 	function uni_features(){
