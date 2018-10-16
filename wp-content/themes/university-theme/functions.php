@@ -73,6 +73,10 @@
                           )
 						);
 		}
+
+		if (!is_admin() AND is_post_type_archive('campus') AND $query->is_main_query()) {
+			$query->set('posts_per_page', -1);
+		}
 		
 	}
 
