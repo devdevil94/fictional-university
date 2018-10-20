@@ -1,7 +1,7 @@
 class Search{
 
 	constructor(){
-		alert("Hi there");
+		
 	}
 
 }
