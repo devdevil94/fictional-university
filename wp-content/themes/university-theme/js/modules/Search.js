@@ -7,7 +7,7 @@ class Search{
 		this.closeButton = $(".search-overlay__close");
 		this.searchOverlay = $(".search-overlay");
 		this.isOverlayOpen = false;
-
+		this.searchTerm = $("#search-term");
 		this.events();
 	}
 
@@ -16,7 +16,11 @@ class Search{
 		this.closeButton.on("click", this.closeOverlay.bind(this));
 
 		$(document).on("keydown", this.keyPressDispatcher.bind(this));
+
+		$("#search-term").on("keydown", this.typingLogic);
 	}
+
+
 
 	openOverlay(){
 		this.searchOverlay.addClass("search-overlay--active");
@@ -27,7 +31,7 @@ class Search{
 
 	closeOverlay(){
 		this.searchOverlay.removeClass("search-overlay--active");
-		thi.isOverlayOpen = false;
+		this.isOverlayOpen = false;
 		$("body").removeClass("body-no-scroll");
 	}
 
