@@ -25,8 +25,11 @@ class Search{
 	}
 
 	getResults(){
-		this.resultDiv.html("Imagine");
-		this.isSpinnerVisible = false;
+		$.getJSON("http://localhost/fictional-university/wp-json/wp/v2/posts?search=post", 
+			function(posts){
+				alert(posts[0].title.rendered);
+			}
+		)	
 	}
 
 	typingLogic(){
