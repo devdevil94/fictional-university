@@ -25,7 +25,7 @@ class Search{
 	}
 
 	getResults(){
-		$.getJSON("http://localhost/fictional-university/wp-json/wp/v2/posts?search=" + this.searchField.val(), posts =>{this.resultDiv.html(`
+		$.getJSON(uniData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(), posts =>{this.resultDiv.html(`
 			<h2 class="search-overlay__section">General Information</h2>
 			${posts.length ? '<ul class="link-list min-list">' : '<p>No general information matches this</p>' }
 			
@@ -33,6 +33,8 @@ class Search{
 			
 			${posts.length ? '</ul>' : ''}
 			`);
+
+			this.isSpinnerVisible = false;
 		});	
 	}
 

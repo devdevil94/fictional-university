@@ -36,6 +36,9 @@
 		wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
 		wp_enqueue_style('uni_main_styles', get_stylesheet_uri(), NULL, microtime());
 		wp_enqueue_script('google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyAXksGHC3gSKtwD8qWjNEWuXctJzliDITw', NULL, '1.0', true);
+		wp_localize_script( 'main_uni_js', 'uniData', array(
+			'root_url' => get_site_url()
+		) );
 	}
 
 	function uni_features(){
