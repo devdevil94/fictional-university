@@ -26,23 +26,21 @@ class Search{
 	}
 
 	getResults(){
-		$.getJSON(uniData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(), 
-			posts => {
-				$.getJSON(uniData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val(),
-					pages => {
-						var combinedResults = posts.concat(pages);
-						this.resultDiv.html(`
+		$.when(
+			$.getJSON(uniData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val()),
+			$.getJSON(uniData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val())
+			).then(
+				(posts, pages) => {
+					var combinedResults = posts[0].concat(pages[0]);
+					this.resultDiv.html(`
 						<h2 class="search-overlay__section">General Information</h2>
 						${combinedResults.length ? '<ul class="link-list min-list">' : '<p>No general information matches this</p>'}
-				
 						${combinedResults.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
-				
 						${combinedResults.length ? '</ul>' : ''}
-						`);
-						this.isSpinnerVisible = false;
-					}
-				);
-			});	
+					`);
+					this.isSpinnerVisible = false;
+				}
+		);
 	}
 
 	typingLogic(){
