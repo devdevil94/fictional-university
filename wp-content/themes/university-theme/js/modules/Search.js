@@ -25,16 +25,13 @@ class Search{
 	}
 
 	getResults(){
-		$.getJSON("http://localhost/fictional-university/wp-json/wp/v2/posts?search=" + this.searchField.val(), 
-			posts =>{
-				this.resultDiv.html(`
-					<h2 class="search-overlay__section">General Information</h2>
-					<ul class="link-list min-list">
-					<li><a href="#">Click Me!</a></li>
-					</ul>
-				`);
-			}
-		)	
+		$.getJSON("http://localhost/fictional-university/wp-json/wp/v2/posts?search=" + this.searchField.val(), posts =>{this.resultDiv.html(`
+			<h2 class="search-overlay__section">General Information</h2>
+			<ul class="link-list min-list">
+			${posts.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+			</ul>
+			`);
+		});	
 	}
 
 	typingLogic(){
