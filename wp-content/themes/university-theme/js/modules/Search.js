@@ -39,8 +39,9 @@ class Search{
 						${combinedResults.length ? '</ul>' : ''}
 					`);
 					this.isSpinnerVisible = false;
-				}
-		);
+				},
+				() => { this.resultDiv.html('Unexpected error; please try again.')}
+			);
 	}
 
 	typingLogic(){
