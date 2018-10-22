@@ -27,9 +27,11 @@ class Search{
 	getResults(){
 		$.getJSON("http://localhost/fictional-university/wp-json/wp/v2/posts?search=" + this.searchField.val(), posts =>{this.resultDiv.html(`
 			<h2 class="search-overlay__section">General Information</h2>
-			<ul class="link-list min-list">
+			${posts.length ? '<ul class="link-list min-list">' : '<p>No general information matches this</p>' }
+			
 			${posts.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
-			</ul>
+			
+			${posts.length ? '</ul>' : ''}
 			`);
 		});	
 	}
