@@ -88,9 +88,16 @@
 		return $api;
 	}
 
+	function uni_custom_rest(){
+		register_rest_field( 'post', 'authorName', array(
+			'get_callback' => function(){return get_the_author();}
+		));
+	}
+
 	add_action('wp_enqueue_scripts', 'uni_files'); //run js and css function(s) above
 	add_action('after_setup_theme', 'uni_features');
-	add_action( 'pre_get_posts', 'uni_adjust_queries');
-	add_filter( 'acf/fields/google_map/api', 'uniMapKey' );
+	add_action('pre_get_posts', 'uni_adjust_queries');
+	add_action('rest_api_init','uni_custom_rest')
+	add_filter('acf/fields/google_map/api', 'uniMapKey');
 	
 ?>
