@@ -26,22 +26,37 @@ class Search{
 	}
 
 	getResults(){
-		$.when(
-			$.getJSON(uniData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val()),
-			$.getJSON(uniData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val())
-			).then(
-				(posts, pages) => {
-					var combinedResults = posts[0].concat(pages[0]);
-					this.resultDiv.html(`
-						<h2 class="search-overlay__section">General Information</h2>
-						${combinedResults.length ? '<ul class="link-list min-list">' : '<p>No general information matches this</p>'}
-						${combinedResults.map(item => `<li><a href="${item.link}">${item.title.rendered}</a> ${item.type=='post'? `by ${item.authorName}`: ''}</li>`).join('')}
-						${combinedResults.length ? '</ul>' : ''}
-					`);
-					this.isSpinnerVisible = false;
-				},
-				() => { this.resultDiv.html('Unexpected error; please try again.')}
-			);
+
+		$.getJSON(uniData.root_url + '/wp-json/university/v1/search?term=' + this.searchField.val(),
+			(results)=>{
+				this.resultDiv.html(`
+					<div class="row">
+						<div class="one-third">
+							<h2 class="search-overlay__section">General Information</h2>
+							${results.generalInfo.length ? '<ul class="link-list min-list">' : '<p>No general information matches this</p>'}
+			 				${results.generalInfo.map(item => `<li><a href="${item.permalink}">${item.title}</a> ${item.type=='post'? `by ${item.authorName}`: ''}</li>`).join('')}
+							${results.generalInfo.length ? '</ul>' : ''}
+						</div>
+						<div class="one-third">
+							<h2 class="search-overlay__section">Programs</h2>
+							${results.programs.length ? '<ul class="link-list min-list">' : `<p>No programs match this. <a href="${uniData.root_url}/programs">View all programs</a></p>`}
+			 				${results.programs.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+							${results.programs.length ? '</ul>' : ''}
+							<h2 class="search-overlay__section">Professors</h2>
+						</div>
+						<div class="one-third">
+							<h2 class="search-overlay__section">Campuses</h2>
+							${results.campuses.length ? '<ul class="link-list min-list">' : `<p>No campuses match this. <a href="${uniData.root_url}/campuses">View all campuses</a></p>`}
+			 				${results.campuses.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+							${results.campuses.length ? '</ul>' : ''}
+							<h2 class="search-overlay__section">Events</h2>
+						</div>
+					</div>
+				`);
+
+				this.isSpinnerVisible = false;
+			}
+		);
 	}
 
 	typingLogic(){
@@ -65,7 +80,7 @@ class Search{
 	openOverlay(){
 		this.searchOverlay.addClass("search-overlay--active");
 		$("body").addClass("body-no-scroll");
-		this,searchField.val('');
+		this.searchField.val('');
 		setTimeout(() => this.searchField.focus(), 301);
 		this.isOverlayOpen = true;
 	}
