@@ -42,7 +42,18 @@ class Search{
 							${results.programs.length ? '<ul class="link-list min-list">' : `<p>No programs match this. <a href="${uniData.root_url}/programs">View all programs</a></p>`}
 			 				${results.programs.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
 							${results.programs.length ? '</ul>' : ''}
+
 							<h2 class="search-overlay__section">Professors</h2>
+							${results.professors.length ? '<ul class="professor-cards">' : `<p>No professors match this.</p>`}
+			 				${results.professors.map(item => `
+								<li class="professor-card__list-item">
+						            <a class="professor-card" href="${item.permalink}">
+						              <img src="${item.img}" class="professor-card__image">
+						              <span class="professor-card__name">${item.title}</span>
+						            </a>
+						         </li>
+			 				`).join('')}
+							${results.professors.length ? '</ul>' : ''}
 						</div>
 						<div class="one-third">
 							<h2 class="search-overlay__section">Campuses</h2>
@@ -92,7 +103,6 @@ class Search{
 	}
 
 	keyPressDispatcher(e){
-		console.log(e.keyCode);
 		if(e.keyCode == 83 && !this.isOverlayOpen && !$("input, textarea").is(':focus'))
 			this.openOverlay();
 		else if (e.keyCode == 27 && this.isOverlayOpen)
