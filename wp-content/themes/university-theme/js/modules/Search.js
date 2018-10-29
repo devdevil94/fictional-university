@@ -60,7 +60,24 @@ class Search{
 							${results.campuses.length ? '<ul class="link-list min-list">' : `<p>No campuses match this. <a href="${uniData.root_url}/campuses">View all campuses</a></p>`}
 			 				${results.campuses.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
 							${results.campuses.length ? '</ul>' : ''}
+
 							<h2 class="search-overlay__section">Events</h2>
+							${results.events.length ? '' : `<p>No events match this. <a href="${uniData.root_url}/events">View all events</a></p>`}
+			 				${results.events.map(item => `
+								<div class="event-summary">
+								  <a class="event-summary__date t-center" href="${item.permalink}">
+								    <span class="event-summary__month">${item.month}</span>
+								    <span class="event-summary__day">${item.day}</span>  
+								  </a>
+								    <div class="event-summary__content">
+								      <h5 class="event-summary__title headline headline--tiny"><a href="${item.permalink}">${item.title}</a></h5>
+								      <p>
+								      	${item.desc}
+								        <a href="${item.permalink}" class="nu gray">Learn more</a>
+								      </p>
+								    </div>
+								</div>
+			 				`).join('')}
 						</div>
 					</div>
 				`);
