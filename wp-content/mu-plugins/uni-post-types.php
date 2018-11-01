@@ -34,7 +34,7 @@
 		//Program Post Type
 		register_post_type('program', array( 
 			'has_archive' => true,
-			'supports' => array('title', 'editor'),
+			'supports' => array('title'),
 			'rewrite' => array('slug' => 'programs'),
 			'public' => true,
 			'labels' => array(
